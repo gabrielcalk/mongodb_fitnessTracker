@@ -14,8 +14,10 @@ app.use(express.json());
 const dashRouter = require('./controller/dashboard');
 const exerciseRouter = require('./controller/workout');
 const homeRouter = require('./controller/home');
+const apiRouter = require('./controller/api')
 app.use('/dashboard', dashRouter);
 app.use('/exercise', exerciseRouter);
+app.use('/api', apiRouter)
 app.use(homeRouter);
 
 mongoose.connect('mongodb://localhost/fitnessTracker', {
