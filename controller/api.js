@@ -1,7 +1,7 @@
-const apiRouter = require("express").Router();
-const Workout = require("../models/workout.js");
+const apiRouter = require('express').Router();
+const Workout = require('../models/workout.js');
 
-apiRouter.post("/workouts", ({ body }, res) => {
+apiRouter.post('/workouts', ({ body }, res) => {
   Workout.create({ body })
     .then((data) => {
       res.json(data);
@@ -11,4 +11,11 @@ apiRouter.post("/workouts", ({ body }, res) => {
     });
 });
 
-module.exports = apiRouter
+apiRouter.put('/workouts/:id', (req, res) =>{
+  Workout.updateOne({_id: req.body.id},  {'$set': {
+      "exercise.$.name": req.body.name,
+    }}
+  )
+})
+
+module.exports = apiRouter;
