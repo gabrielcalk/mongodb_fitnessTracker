@@ -1,16 +1,20 @@
-const API = {
-  async getLastWorkout() {
+const API={
+  // Getting the last workout
+  async getLastWorkout(){
     let res;
-    try {
-      res = await fetch("/api/workouts");
-    } catch (err) {
+    try{
+      res = await fetch('/api/workouts');
+    }catch (err){
       console.log(err)
     }
-    const json = await res.json();
+    const json = await res.json()
 
+  // Taking the last workout (-1 because the count start on 0)
     return json[json.length - 1];
   },
+  // adding the exercise to the database 
   async addExercise(data) {
+    console.log(data)
     const id = location.search.split("=")[1];
 
     const res = await fetch("/api/workouts/" + id, {
