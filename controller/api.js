@@ -3,9 +3,33 @@ const Workout = require('../models/workout');
 
 apiRouter.get('/workouts', async(req, res) => {
   try{
-    const data = await Workout.find({}).sort({ date: -1 })
-    // Getting the lastWorkout by descending order
-    res.status(200).send(data)
+    const data = await Workout.aggregate([
+      {
+        $addFields:{
+          totalDuration:{
+            $sum: '$exercises.duration',
+          }
+      }},
+      {$sort: {date: -1}}
+    ])
+    res.status(200).json(data)
+  } catch(err){
+    res.status(500).send(err)
+  }
+})
+
+apiRouter.get('/workouts/range', async(req, res) => {
+  try{
+    const data = await Workout.aggregate([
+      {
+        $addFields:{
+          totalDuration:{
+            $sum: '$exercises.duration',
+          }
+      }},
+      {$sort: {date: -1}}
+    ])
+    res.status(200).json(data)
   } catch(err){
     res.status(500).send(err)
   }
