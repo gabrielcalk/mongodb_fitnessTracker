@@ -20,11 +20,13 @@ app.use('/exercise', exerciseRouter);
 app.use('/api', apiRouter)
 app.use(homeRouter);
 
+// Connecting to the db
 mongoose.connect('mongodb://localhost/fitnessTracker', {
      useNewUrlParser: true,
      useUnifiedTopology: true,
 });
 
+// PORT
 app.listen(PORT, () => {
     console.log(`Listening to: http://localhost:${PORT}`)
 })

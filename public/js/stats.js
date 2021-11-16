@@ -1,3 +1,4 @@
+// calculateTotalWeight
 function calculateTotalWeight(data) {
   const totals = [];
 
@@ -60,7 +61,7 @@ function populateChart(data) {
       },
     },
   });
-
+// Creating the new Chart
   let barChart = new Chart(bar, {
     type: 'bar',
     data: {

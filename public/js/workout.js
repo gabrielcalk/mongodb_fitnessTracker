@@ -1,3 +1,4 @@
+// Rendering the last workout informations
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   if (lastWorkout) {
@@ -18,6 +19,7 @@ async function initWorkout() {
   }
 }
 
+// Adding all the sets, reps, weight and distance in 4 diferent variables
 function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
@@ -32,6 +34,7 @@ function tallyExercises(exercises) {
   return tallied;
 }
 
+// Formating the date
 function formatDate(date) {
   const options = {
     weekday: "long",
@@ -43,6 +46,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
+// Putting the last workout information on the page
 function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
@@ -70,6 +74,7 @@ function renderWorkoutSummary(summary) {
   });
 }
 
+// Adding the information that will be add if has no workout on the db
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");

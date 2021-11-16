@@ -17,6 +17,7 @@ const newWorkout = document.querySelector(".new-workout")
 let workoutType = null;
 let shouldNavigateAway = false;
 
+// Putting the workout id on the localtion(url) as parametor
 async function initExercise() {
   let workout;
 
@@ -29,8 +30,10 @@ async function initExercise() {
 
 }
 
+// Calling the init exercise
 initExercise();
 
+// Changing the inputs according to user choice (cardio or resistence)
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
 
@@ -48,6 +51,7 @@ function handleWorkoutTypeChange(event) {
   validateInputs();
 }
 
+// Validating the inputs provide by the user
 function validateInputs() {
   let isValid = true;
 
@@ -84,7 +88,7 @@ function validateInputs() {
       isValid = false;
     }
   }
-
+// If the inputs is valid, then let the user click on complete or new workout
   if (isValid) {
     completeButton.removeAttribute("disabled");
     addButton.removeAttribute("disabled");
@@ -94,6 +98,7 @@ function validateInputs() {
   }
 }
 
+// Grabbing the inputs
 async function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -118,6 +123,7 @@ async function handleFormSubmit(event) {
   toast.classList.add("success");
 }
 
+// Cleaning the inputs after the user submit
 function clearInputs() {
   cardioNameInput.value = "";
   nameInput.value = "";
@@ -129,6 +135,7 @@ function clearInputs() {
   weightInput.value = "";
 }
 
+// If the user change the type of the workout, then change the inputs
 if (workoutTypeSelect) {
   workoutTypeSelect.addEventListener("change", handleWorkoutTypeChange);
 }
@@ -142,6 +149,7 @@ if (addButton) {
   addButton.addEventListener("click", handleFormSubmit);
 }
 
+// Moving the user to the home page after he/she click on "complete"
 toast.addEventListener("animationend", function handleToastAnimationEnd() {
   toast.removeAttribute("class");
   if (shouldNavigateAway) {
