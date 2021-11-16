@@ -119,13 +119,6 @@ async function handleFormSubmit(event) {
   toast.classList.add("success");
 }
 
-function handleToastAnimationEnd() {
-  toast.removeAttribute("class");
-  if (shouldNavigateAway) {
-    location.href = "/";
-  }
-}
-
 function clearInputs() {
   cardioNameInput.value = "";
   nameInput.value = "";
@@ -149,7 +142,13 @@ if (completeButton) {
 if (addButton) {
   addButton.addEventListener("click", handleFormSubmit);
 }
-toast.addEventListener("animationend", handleToastAnimationEnd);
+
+toast.addEventListener("animationend", function handleToastAnimationEnd() {
+  toast.removeAttribute("class");
+  if (shouldNavigateAway) {
+    location.href = "/";
+  }
+})
 
 document
   .querySelectorAll("input")
