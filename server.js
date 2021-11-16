@@ -21,9 +21,11 @@ app.use('/api', apiRouter)
 app.use(homeRouter);
 
 // Connecting to the db
-mongoose.connect('mongodb://localhost/fitnessTracker', {
-     useNewUrlParser: true,
-     useUnifiedTopology: true,
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/fitnessTracker', {
+    useNewUrlParser : true , 
+    useUnifiedTopology : true , 
+    useCreateIndex : true , 
+    useFindAndModify : false ,
 });
 
 // PORT
